@@ -7,6 +7,7 @@
     <title>Admin Dashboard | biy</title>
     <meta name="description" content="Business dashboard">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -132,9 +133,9 @@
             <nav>
                 <a href="admin.html">Dashboard</a>
                 <a href="index.html">View Shop</a>
-                <a href="#" onclick="logout()">Logout</a>
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </nav>
-            <div class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         </div>
     </header>
 
@@ -325,8 +326,22 @@
                     <p>Today's Orders</p>
                 </div>
                 <div class="stat-card pixel-border">
-                    <h3 id="today-revenue">$0</h3>
-                    <p>Today's Revenue</p>
+                    <i class="fas fa-wallet"
+                        style="font-size: 1.5rem; color: var(--neon-cyan); margin-bottom: 12px;"></i>
+                    <h3>Total Revenue</h3>
+                    <p id="total-revenue">$0.00</p>
+                </div>
+                <div class="stat-card pixel-border">
+                    <i class="fas fa-shopping-bag"
+                        style="font-size: 1.5rem; color: var(--neon-pink); margin-bottom: 12px;"></i>
+                    <h3>Total Orders</h3>
+                    <p id="total-orders">0</p>
+                </div>
+                <div class="stat-card pixel-border">
+                    <i class="fas fa-clock"
+                        style="font-size: 1.5rem; color: var(--neon-orange); margin-bottom: 12px;"></i>
+                    <h3>Pending</h3>
+                    <p id="pending-orders">0</p>
                 </div>
                 <div class="stat-card pixel-border">
                     <h3 id="avg-order">$0</h3>
@@ -388,9 +403,16 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Admin</h4>
-                <a href="admin.html">Dashboard</a>
+                <h4>Navigation</h4>
                 <a href="index.html">View Shop</a>
+                <a href="admin.html">Dashboard</a>
+            </div>
+            <div class="footer-section">
+                <h4>Social</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/biyclothing" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/biyclothing" target="_blank"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">© 2024 biy Admin</div>

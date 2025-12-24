@@ -7,6 +7,7 @@
     <title>Tees | biy</title>
     <meta name="description" content="Designer t-shirts - Phillip Plein, Balmain, D&G">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .hero-section {
             background: linear-gradient(135deg, rgba(255, 0, 0, 0.25), rgba(255, 255, 0, 0.2), rgba(0, 255, 0, 0.25), rgba(255, 0, 255, 0.2)),
@@ -52,9 +53,14 @@
                 <a href="pants.html">Pants</a>
                 <a href="footwear.html">Footwear</a>
                 <a href="contact.html">Contact</a>
-                <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
+                <span class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span
+                        id="cart-count">0</span></span>
             </nav>
-            <div class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="mobile-nav-actions" style="display: flex; align-items: center; gap: 16px;">
+                <span class="categories-toggle" onclick="toggleCategories()"
+                    style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #00ffff; cursor: pointer; display: none;">menu</span>
+                <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+            </div>
         </div>
     </header>
 
@@ -99,6 +105,14 @@
             <div class="footer-section">
                 <h4>Info</h4>
                 <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="https://instagram.com/biyclothing" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/biyclothing" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://tiktok.com/@biyclothing" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">© 2024 BIY</div>

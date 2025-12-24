@@ -196,8 +196,7 @@ header {
 }
 
 .logo {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 700;
+  font-family: 'Press Start 2P', monospace;
   font-size: 1.4rem;
   text-decoration: none;
   letter-spacing: 1px;
@@ -243,6 +242,20 @@ nav a {
 nav a:hover {
   color: var(--neon-cyan);
   text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.cart-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.cart-icon:hover {
+  color: var(--neon-pink);
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px var(--neon-pink));
 }
 
 nav a::after {
@@ -852,6 +865,26 @@ footer {
   border-top: 1px solid var(--muted-color);
   opacity: 0.4;
   font-size: 0.8rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.social-links a {
+  color: var(--text-color);
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  opacity: 0.6;
+}
+
+.social-links a:hover {
+  color: var(--neon-cyan);
+  opacity: 1;
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 8px var(--neon-cyan));
 }
 
 /* Forms */

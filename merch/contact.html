@@ -7,6 +7,7 @@
     <title>Contact | biy</title>
     <meta name="description" content="Get in touch with us">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -23,9 +24,14 @@
                 <a href="pants.html">Pants</a>
                 <a href="footwear.html">Footwear</a>
                 <a href="contact.html">Contact</a>
-                <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
+                <span class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i><span
+                        id="cart-count">0</span></span>
             </nav>
-            <div class="hamburger" onclick="toggleSidebar()">☰</div>
+            <div class="mobile-nav-actions" style="display: flex; align-items: center; gap: 16px;">
+                <span class="categories-toggle" onclick="toggleCategories()"
+                    style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #00ffff; cursor: pointer; display: none;">menu</span>
+                <div class="hamburger" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
+            </div>
         </div>
     </header>
 
@@ -37,15 +43,17 @@
 
         <div class="contact-content" style="max-width: 600px; margin-top: 32px;">
             <div class="pixel-border" style="padding: 32px; margin-bottom: 24px;">
-                <h3 style="font-family: 'Press Start 2P', monospace; font-size: 0.8rem; margin-bottom: 16px;">Email</h3>
-                <p>biyclothingstore@gmail.com</p>
-            </div>
-
-            <div class="pixel-border" style="padding: 32px; margin-bottom: 24px;">
                 <h3 style="font-family: 'Press Start 2P', monospace; font-size: 0.8rem; margin-bottom: 16px;">Follow Us
                 </h3>
-                <p style="margin-bottom: 8px;">Instagram: @biyclothing</p>
-                <p>Twitter: @biyclothing</p>
+                <div class="info-item">
+                    <p><i class="fas fa-envelope"></i> Email: biyclothingstore@gmail.com</p>
+                </div>
+                <div class="info-item">
+                    <p><i class="fab fa-instagram"></i> Instagram: @biyclothing</p>
+                </div>
+                <div class="info-item">
+                    <p><i class="fab fa-twitter"></i> Twitter: @biyclothing</p>
+                </div>
             </div>
 
             <div class="pixel-border" style="padding: 32px;">
@@ -72,6 +80,11 @@
         </div>
         <div class="footer-bottom">
             © 2024 biy. All rights reserved.
+        </div>
+        <div class="social-links" style="justify-content: center; margin-bottom: 24px;">
+            <a href="https://instagram.com/biyclothing" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://twitter.com/biyclothing" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://tiktok.com/@biyclothing" target="_blank"><i class="fab fa-tiktok"></i></a>
         </div>
         <div class="sidebar" id="sidebar">
             <div class="sidebar-nav">
