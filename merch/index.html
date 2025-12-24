@@ -215,7 +215,11 @@
   <!-- Full Hero Section with Nav and Categories -->
   <section class="hero-full">
     <div class="hero-nav">
-      <a href="index.html" class="logo">biy</a>
+      <div class="logo-group" style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="logo">biy</a>
+        <span class="categories-toggle" onclick="toggleCategories()"
+          style="font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #00ffff; cursor: pointer; display: none;">menu</span>
+      </div>
       <nav>
         <a href="tees.html">Tees</a>
         <a href="hoodies.html">Outerwear</a>
@@ -226,8 +230,6 @@
         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
       </nav>
       <div class="mobile-nav-actions" style="display: flex; align-items: center; gap: 16px;">
-        <span class="categories-toggle" onclick="toggleCategories()"
-          style="font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #00ffff; cursor: pointer; display: none;">Categories</span>
         <div class="hamburger" onclick="toggleSidebar()">☰</div>
       </div>
     </div>
