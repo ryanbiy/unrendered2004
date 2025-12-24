@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STRTWEAR | Streetwear Shop</title>
+  <title>biy | Streetwear Shop</title>
   <meta name="description" content="Premium streetwear - Balenciaga, Phillip Plein, Armani, Balmain">
   <link rel="stylesheet" href="styles.css">
   <style>
@@ -101,7 +101,7 @@
 
     .hero-center h1 {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(2.5rem, 10vw, 6rem);
+      font-size: clamp(2.5rem, 8vw, 6rem);
       margin-bottom: 16px;
       background: linear-gradient(90deg, #ff0033, #ffff00, #39ff14, #00ffff, #ff00ff);
       background-size: 400% 100%;
@@ -109,6 +109,8 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: gradientMove 3s ease infinite;
+      text-transform: uppercase;
+      /* Default desktop style */
     }
 
     .hero-center p {
@@ -213,7 +215,7 @@
   <!-- Full Hero Section with Nav and Categories -->
   <section class="hero-full">
     <div class="hero-nav">
-      <a href="index.html" class="logo">STRTWEAR</a>
+      <a href="index.html" class="logo">biy</a>
       <nav>
         <a href="tees.html">Tees</a>
         <a href="hoodies.html">Outerwear</a>
@@ -223,10 +225,11 @@
         <a href="contact.html">Contact</a>
         <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
       </nav>
+      <div class="hamburger" onclick="toggleSidebar()">☰</div>
     </div>
 
     <div class="hero-center">
-      <h1>STRTWEAR</h1>
+      <h1>the street culture</h1>
       <p>Underground streetwear for the bold</p>
 
       <div class="hero-categories">
@@ -281,6 +284,21 @@
     </div>
   </div>
 
+  <!-- Sidebar Navigation -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-nav">
+      <a href="index.html" onclick="toggleSidebar()">Home</a>
+      <a href="tees.html" onclick="toggleSidebar()">Tees</a>
+      <a href="hoodies.html" onclick="toggleSidebar()">Outerwear</a>
+      <a href="pants.html" onclick="toggleSidebar()">Jeans</a>
+      <a href="footwear.html" onclick="toggleSidebar()">Footwear</a>
+      <a href="accessories.html" onclick="toggleSidebar()">Accessories</a>
+      <a href="contact.html" onclick="toggleSidebar()">Contact</a>
+      <a href="login.html" onclick="toggleSidebar()">Admin</a>
+    </div>
+  </div>
+
   <footer>
     <div class="footer-content">
       <div class="footer-section">
@@ -297,12 +315,17 @@
         <a href="login.html">Admin</a>
       </div>
     </div>
-    <div class="footer-bottom">© 2024 STRTWEAR</div>
+    <div class="footer-bottom">© 2024 biy</div>
   </footer>
 
   <script src="access.js"></script>
   <script src="cart.js"></script>
   <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebar-overlay').classList.toggle('open');
+    }
+
     fetchLocalProducts().then(products => {
       renderProducts(products.slice(0, 4), 'featured-grid');
     });

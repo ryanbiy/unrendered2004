@@ -67,6 +67,74 @@ header {
   backdrop-filter: blur(10px);
 }
 
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--neon-cyan);
+  z-index: 150;
+  transition: all 0.3s;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100vh;
+  background: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 250;
+  padding: 80px 32px;
+  transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  border-right: 2px solid;
+  border-image: linear-gradient(180deg, var(--neon-pink), var(--neon-cyan)) 1;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-nav a {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--text-color);
+  text-transform: lowercase;
+  /* as requested */
+  transition: all 0.3s;
+}
+
+.sidebar-nav a:hover {
+  color: var(--neon-pink);
+  transform: translateX(10px);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .header-content {
   max-width: 1400px;
   margin: 0 auto;
@@ -76,10 +144,11 @@ header {
 }
 
 .logo {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 1.2rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
   text-decoration: none;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1155,21 +1224,33 @@ footer {
   }
 
   header .header-content {
-    flex-direction: column;
+    flex-direction: row;
+    /* Keep logo and hamburger horizontal */
+    justify-content: space-between;
     gap: 16px;
-    text-align: center;
+    text-align: left;
+  }
+
+  .hamburger {
+    display: block;
   }
 
   nav {
-    gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: none;
+    /* Hide standard nav on mobile */
   }
 
-  nav a {
-    font-size: 0.45rem;
-    padding: 8px 4px;
-    /* Better touch target */
+  /* Specific branding for mobile hero */
+  .hero-center h1 {
+    font-size: 2.5rem;
+    text-transform: lowercase;
+    /* small letters for mobile */
+    letter-spacing: 2px;
+  }
+
+  .hero-center p {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
   }
 
   .quick-actions {

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeans | STRTWEAR</title>
+    <title>Jeans | biy</title>
     <meta name="description" content="Designer jeans - Affliction, Armani, Artful Dodger">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -39,7 +39,7 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">STRTWEAR</a>
+            <a href="index.html" class="logo">biy</a>
             <nav>
                 <a href="tees.html">Tees</a>
                 <a href="hoodies.html">Outerwear</a>
@@ -49,6 +49,7 @@
                 <a href="contact.html">Contact</a>
                 <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
             </nav>
+            <div class="hamburger" onclick="toggleSidebar()">☰</div>
         </div>
     </header>
 
@@ -95,15 +96,33 @@
                 <a href="contact.html">Contact</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2024 STRTWEAR</div>
+        <div class="footer-bottom">© 2024 BIY</div>
     </footer>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <a href="index.html" onclick="toggleSidebar()">Home</a>
+            <a href="tees.html" onclick="toggleSidebar()">Tees</a>
+            <a href="hoodies.html" onclick="toggleSidebar()">Outerwear</a>
+            <a href="pants.html" onclick="toggleSidebar()">Jeans</a>
+            <a href="footwear.html" onclick="toggleSidebar()">Footwear</a>
+            <a href="accessories.html" onclick="toggleSidebar()">Accessories</a>
+            <a href="contact.html" onclick="toggleSidebar()">Contact</a>
+            <a href="login.html" onclick="toggleSidebar()">Admin</a>
+        </div>
+    </div>
 
     <script src="access.js"></script>
     <script src="cart.js"></script>
     <script>
-        fetchLocalProducts('jeans').then(products => {
-            renderProducts(products, 'product-grid');
-        });
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('open');
+        }
+
+        loadProducts('jeans');
     </script>
 </body>
 

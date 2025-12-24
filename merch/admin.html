@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard | STRTWEAR</title>
+    <title>Admin Dashboard | biy</title>
     <meta name="description" content="Business dashboard">
     <link rel="stylesheet" href="styles.css">
     <!-- Firebase SDKs -->
@@ -124,12 +124,13 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">STRTWEAR</a>
+            <a href="index.html" class="logo">biy</a>
             <nav>
                 <a href="admin.html">Dashboard</a>
                 <a href="index.html">View Shop</a>
                 <a href="#" onclick="logout()">Logout</a>
             </nav>
+            <div class="hamburger" onclick="toggleSidebar()">☰</div>
         </div>
     </header>
 
@@ -353,7 +354,7 @@
             <div class="settings-section pixel-border" style="padding: 24px;">
                 <h3>Shop Information</h3>
                 <div class="product-form">
-                    <input type="text" id="shop-name" placeholder="Shop Name" value="STRTWEAR">
+                    <input type="text" id="shop-name" placeholder="Shop Name" value="biy">
                     <input type="email" id="shop-email" placeholder="Contact Email">
                     <input type="text" id="shop-instagram" placeholder="Instagram Handle">
                     <input type="text" id="shop-twitter" placeholder="Twitter Handle">
@@ -388,10 +389,30 @@
                 <a href="index.html">View Shop</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2024 STRTWEAR Admin</div>
+        <div class="footer-bottom">© 2024 biy Admin</div>
     </footer>
 
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <a href="index.html" onclick="toggleSidebar()">Home</a>
+            <a href="tees.html" onclick="toggleSidebar()">Tees</a>
+            <a href="hoodies.html" onclick="toggleSidebar()">Outerwear</a>
+            <a href="pants.html" onclick="toggleSidebar()">Jeans</a>
+            <a href="footwear.html" onclick="toggleSidebar()">Footwear</a>
+            <a href="accessories.html" onclick="toggleSidebar()">Accessories</a>
+            <a href="contact.html" onclick="toggleSidebar()">Contact</a>
+            <a href="admin.html" onclick="toggleSidebar()">Dashboard</a>
+            <a href="#" onclick="logout(); toggleSidebar();">Logout</a>
+        </div>
+    </div>
+
     <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('open');
+        }
         // Authentication
         function checkAuth() {
             if (localStorage.getItem('adminLoggedIn') !== 'true') {

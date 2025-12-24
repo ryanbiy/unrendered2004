@@ -4,34 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tees | STRTWEAR</title>
+    <title>Tees | biy</title>
     <meta name="description" content="Designer t-shirts - Phillip Plein, Balmain, D&G">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .page-hero {
-            height: 300px;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-                url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1200&q=80');
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.25), rgba(255, 255, 0, 0.2), rgba(0, 255, 0, 0.25), rgba(255, 0, 255, 0.2)),
+                url('images/hero-bg.jpg');
             background-size: cover;
             background-position: center;
+            height: 400px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
-            filter: grayscale(100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .page-hero h1 {
-            font-family: 'Press Start 2P', monospace;
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-
-        .page-hero p {
-            font-size: 1rem;
-            opacity: 0.9;
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 3px),
+                radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+            pointer-events: none;
+            animation: scanlines 0.1s linear infinite;
         }
     </style>
 </head>
@@ -39,16 +41,16 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="index.html" class="logo">STRTWEAR</a>
+            <a href="index.html" class="logo">biy</a>
             <nav>
                 <a href="tees.html">Tees</a>
-                <a href="hoodies.html">Outerwear</a>
-                <a href="pants.html">Jeans</a>
+                <a href="hoodies.html">Hoodies</a>
+                <a href="pants.html">Pants</a>
                 <a href="footwear.html">Footwear</a>
-                <a href="accessories.html">Accessories</a>
                 <a href="contact.html">Contact</a>
                 <span class="cart-icon" onclick="toggleCart()">🛒<span id="cart-count">0</span></span>
             </nav>
+            <div class="hamburger" onclick="toggleSidebar()">☰</div>
         </div>
     </header>
 
@@ -95,12 +97,32 @@
                 <a href="contact.html">Contact</a>
             </div>
         </div>
-        <div class="footer-bottom">© 2024 STRTWEAR</div>
+        <div class="footer-bottom">© 2024 BIY</div>
     </footer>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <a href="index.html" onclick="toggleSidebar()">Home</a>
+            <a href="tees.html" onclick="toggleSidebar()">Tees</a>
+            <a href="hoodies.html" onclick="toggleSidebar()">Outerwear</a>
+            <a href="pants.html" onclick="toggleSidebar()">Jeans</a>
+            <a href="footwear.html" onclick="toggleSidebar()">Footwear</a>
+            <a href="accessories.html" onclick="toggleSidebar()">Accessories</a>
+            <a href="contact.html" onclick="toggleSidebar()">Contact</a>
+            <a href="login.html" onclick="toggleSidebar()">Admin</a>
+        </div>
+    </div>
 
     <script src="access.js"></script>
     <script src="cart.js"></script>
     <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebar-overlay').classList.toggle('open');
+        }
+
         fetchLocalProducts('tees').then(products => {
             renderProducts(products, 'product-grid');
         });
