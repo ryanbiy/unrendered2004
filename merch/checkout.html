@@ -103,17 +103,22 @@
                     <h2 style="margin-top: 32px;">Payment Method</h2>
                     <div class="payment-options">
                         <label class="payment-option">
-                            <input type="radio" name="payment" value="card" checked>
-                            <span>💳 Credit Card</span>
-                        </label>
-                        <label class="payment-option">
-                            <input type="radio" name="payment" value="paypal">
-                            <span>🅿️ PayPal</span>
+                            <input type="radio" name="payment" value="mpesa" checked>
+                            <span>📱 M-Pesa</span>
                         </label>
                         <label class="payment-option">
                             <input type="radio" name="payment" value="cod">
                             <span>💵 Cash on Delivery</span>
                         </label>
+                    </div>
+
+                    <!-- M-Pesa Phone Number (shown when M-Pesa is selected) -->
+                    <div id="mpesa-phone-group" class="form-group" style="margin-top: 16px;">
+                        <label for="mpesa-phone">M-Pesa Phone Number *</label>
+                        <input type="tel" id="mpesa-phone" name="mpesa-phone" placeholder="254712345678"
+                            pattern="[0-9]{12}">
+                        <small style="display: block; margin-top: 4px; opacity: 0.7;">Format: 254XXXXXXXXX (12
+                            digits)</small>
                     </div>
 
                     <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 24px;">
@@ -223,11 +228,19 @@
             document.getElementById('category-popup').classList.toggle('open');
             document.getElementById('category-overlay').classList.toggle('open');
         }
-        // Initialize EmailJS (you'll need to sign up at emailjs.com for free)
-        // Replace these with your actual EmailJS credentials
-        const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
-        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        // Payment method toggle
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                const mpesaGroup = document.getElementById('mpesa-phone-group');
+                if (this.value === 'mpesa') {
+                    mpesaGroup.style.display = 'block';
+                    document.getElementById('mpesa-phone').required = true;
+                } else {
+                    mpesaGroup.style.display = 'none';
+                    document.getElementById('mpesa-phone').required = false;
+                }
+            });
+        });
 
         // Render checkout items
         function renderCheckoutItems() {
@@ -259,15 +272,15 @@
             document.getElementById('order-total').textContent = `$${total.toFixed(2)}`;
         }
 
-        // Firebase Configuration (Same as in admin.html)
+        // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "your-project.firebaseapp.com",
-            databaseURL: "https://your-project.firebaseio.com",
-            projectId: "your-project",
-            storageBucket: "your-project.appspot.com",
-            messagingSenderId: "your-id",
-            appId: "your-app-id"
+            apiKey: "AIzaSyAum8_apfBgC8xZ0fpCLJK8sC0nSpp4O6g",
+            authDomain: "biy-clothing-store-36dd8.firebaseapp.com",
+            databaseURL: "https://biy-clothing-store-36dd8-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "biy-clothing-store-36dd8",
+            storageBucket: "biy-clothing-store-36dd8.firebasestorage.app",
+            messagingSenderId: "117150750056",
+            appId: "1:117150750056:web:82e51312fe2ca3cfa7f2dd"
         };
 
         // Initialize Firebase
@@ -292,69 +305,107 @@
                 return;
             }
 
-            const formData = new FormData(this);
-            const orderNumber = generateOrderNumber();
-            const email = formData.get('email');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
 
-            // Order items summary for email
-            const orderItems = cart.map(item =>
-                `${item.name} (Size: ${item.size}) x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`
-            ).join('\n');
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = subtotal > 100 ? 0 : 15;
-            const total = subtotal + shipping;
-
-            // Try to send email (if EmailJS is configured)
             try {
-                if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
-                    emailjs.init(EMAILJS_PUBLIC_KEY);
-                    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                        to_email: email,
-                        to_name: formData.get('firstName'),
-                        order_number: orderNumber,
-                        order_items: orderItems,
-                        total: total.toFixed(2),
-                        shipping_address: `${formData.get('address')}, ${formData.get('city')}, ${formData.get('zip')}, ${formData.get('country')}`,
-                        admin_email: 'biyclothingstore@gmail.com' // Store owner email
-                    });
-                }
-            } catch (error) {
-                console.log('Email service not configured, skipping email');
-            }
+                const formData = new FormData(this);
+                const orderNumber = generateOrderNumber();
+                const email = formData.get('email');
+                const paymentMethod = formData.get('payment');
 
-            // Store order data
-            const orderData = {
-                orderNumber,
-                date: new Date().toISOString(),
-                customer: {
-                    firstName: formData.get('firstName'),
-                    lastName: formData.get('lastName'),
-                    email: email,
-                    phone: formData.get('phone'),
-                    address: formData.get('address'),
-                    city: formData.get('city'),
-                    zip: formData.get('zip'),
-                    country: formData.get('country')
-                },
-                items: cart,
-                subtotal,
-                shipping,
-                total,
-                payment: formData.get('payment'),
-                status: 'pending'
-            };
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const shipping = subtotal > 100 ? 0 : 15;
+                const total = subtotal + shipping;
 
-            if (db) {
+                // Store order data
+                const orderData = {
+                    orderNumber,
+                    date: new Date().toISOString(),
+                    customer: {
+                        name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+                        firstName: formData.get('firstName'),
+                        lastName: formData.get('lastName'),
+                        email: email,
+                        phone: formData.get('phone') || formData.get('mpesa-phone'),
+                        address: formData.get('address'),
+                        city: formData.get('city'),
+                        postalCode: formData.get('zip'),
+                        country: formData.get('country')
+                    },
+                    items: cart,
+                    total,
+                    paymentMethod: paymentMethod,
+                    paymentStatus: 'pending',
+                    status: 'pending',
+                    mpesaReceiptNumber: '',
+                    mpesaTransactionId: ''
+                };
+
                 // Save to Firebase
-                await db.ref('orders').push(orderData);
-            } else {
-                // Fallback to localStorage
-                const orders = JSON.parse(localStorage.getItem('orders')) || [];
-                orders.push(orderData);
-                localStorage.setItem('orders', JSON.stringify(orders));
-            }
+                let orderId;
+                if (db) {
+                    const orderRef = await db.ref('orders').push(orderData);
+                    orderId = orderRef.key;
+                } else {
+                    // Fallback to localStorage
+                    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    orders.push(orderData);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+                }
 
+                // If M-Pesa payment, initiate STK Push
+                if (paymentMethod === 'mpesa') {
+                    submitBtn.textContent = 'Initiating M-Pesa...';
+
+                    const mpesaPhone = formData.get('mpesa-phone');
+
+                    try {
+                        const response = await fetch('/.netlify/functions/mpesa-payment', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                phoneNumber: mpesaPhone,
+                                amount: total,
+                                orderId: orderNumber,
+                                accountReference: orderNumber
+                            })
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            alert('✅ STK Push sent! Please check your phone and enter your M-Pesa PIN.');
+                            submitBtn.textContent = 'Waiting for payment...';
+
+                            // Poll for payment status (simplified - in production use webhooks)
+                            setTimeout(() => {
+                                showOrderConfirmation(email, orderNumber);
+                            }, 5000);
+                        } else {
+                            throw new Error(result.error || 'M-Pesa payment failed');
+                        }
+                    } catch (mpesaError) {
+                        console.error('M-Pesa error:', mpesaError);
+                        alert('❌ M-Pesa payment failed: ' + mpesaError.message + '\n\nOrder saved as Cash on Delivery.');
+                        showOrderConfirmation(email, orderNumber);
+                    }
+                } else {
+                    // Cash on Delivery - show confirmation immediately
+                    showOrderConfirmation(email, orderNumber);
+                }
+
+            } catch (error) {
+                console.error('Order error:', error);
+                alert('Failed to place order: ' + error.message);
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalBtnText;
+            }
+        });
+
+        function showOrderConfirmation(email, orderNumber) {
             // Show confirmation
             document.getElementById('confirm-email').textContent = email;
             document.getElementById('order-number').textContent = orderNumber;
@@ -363,7 +414,7 @@
             // Clear cart
             localStorage.removeItem('cart');
             updateCartCount();
-        });
+        }
 
         // Initialize
         renderCheckoutItems();

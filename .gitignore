@@ -1,0 +1,29 @@
+# Environment variables
+.env
+.env.local
+
+# Dependencies
+node_modules/
+
+# Netlify build artifacts
+.netlify/
+# Allow netlify/functions source code
+!netlify/functions/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,39 @@
+[build]
+  # Build command (if needed)
+  command = "echo 'No build step required'"
+  # Publish directory
+  publish = "merch"
+  # Functions directory
+  functions = "netlify/functions"
+
+[dev]
+  # Local dev server settings
+  command = "echo 'Dev server running'"
+  port = 8888
+  targetPort = 8888
+  publish = "merch"
+  functions = "netlify/functions"
+
+[[redirects]]
+  # SPA fallback for client-side routing
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[[headers]]
+  # Security headers
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  # CORS headers for API functions
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
