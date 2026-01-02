@@ -95,34 +95,36 @@ header {
     display: flex;
     align-items: center;
     gap: 8px;
+    white-space: nowrap;
 }
 
 .nav-btn i,
 .nav-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
+    stroke-width: 2.5px;
 }
 
 .nav-btn:hover {
     background: white;
     color: black;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
 .cart-toggle {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     position: relative;
 }
 
 .cart-badge {
     background: var(--primary-red);
     color: white;
-    font-size: 0.7rem;
-    padding: 2px 6px;
+    font-size: 0.65rem;
+    padding: 1px 5px;
     border-radius: 2px;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 #loginBtn {
@@ -397,7 +399,6 @@ header {
     }
 }
 
-/* Responsive Grid Adjustments */
 @media (max-width: 768px) {
     .social-sidebar {
         display: none;
@@ -422,7 +423,64 @@ header {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 15px 10px;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
     .product-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 8px 100px;
+    }
+
+    .product-info {
+        padding: 10px 5px;
+    }
+
+    .product-name {
+        font-size: 0.65rem;
+        margin-bottom: 4px;
+        line-height: 1.2;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        height: 2.4em;
+        /* Ensure 2 lines of text space */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-price {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+
+    .btn-add {
+        padding: 6px 2px;
+        font-size: 0.6rem;
+        letter-spacing: 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .nav-btn span {
+        font-size: 0.65rem;
+    }
+
+    /* Keep icons but hide text only on VERY small screens if needed */
+    @media (max-width: 350px) {
+        .nav-btn span {
+            display: none;
+        }
+
+        .nav-btn {
+            padding: 6px;
+        }
     }
 }
