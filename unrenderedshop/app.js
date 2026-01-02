@@ -50,11 +50,13 @@ const loginBtn = document.getElementById('loginBtn');
 const closeLogin = document.getElementById('closeLogin');
 const cartCount = document.querySelector('.cart-badge');
 const cartItems = document.getElementById('cartItems');
+const cartPanelCount = document.getElementById('cartPanelCount');
 
 // Initialize Website
 function init() {
     renderProducts();
     setupEventListeners();
+    updateCartUI();
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
@@ -104,7 +106,10 @@ window.addToCart = (id) => {
 };
 
 function updateCartUI() {
-    cartCount.innerText = cartContent.length;
+    const totalItems = cartContent.length;
+    cartCount.innerText = totalItems;
+    cartCount.setAttribute('data-count', totalItems);
+    if (cartPanelCount) cartPanelCount.innerText = totalItems;
 
     if (cartContent.length === 0) {
         cartItems.innerHTML = `<p style="color: #666; text-align: center; margin-top: 50px;">Your bag is currently empty.</p>`;
