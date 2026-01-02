@@ -2,110 +2,120 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNRENDERED2004 | Streetwear Archive</title>
-    <meta name="description" content="Official UNRENDERED2004 Store. Limited edition streetwear made to order.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UNRENDERED2004 | Streetwear Archive</title>
+  <meta name="description" content="Official UNRENDERED2004 Store. Limited edition streetwear made to order.">
 
-    <!-- Design Foundation -->
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
+  <div class="site-bg"></div>
+  <!-- Header -->
+  <header>
+    <div class="logo">UNRENDERED2004</div>
+    <nav class="nav-actions">
+      <button class="nav-btn" id="loginBtn">
+        <i data-lucide="user"></i>
+        <span>LOG IN</span>
+      </button>
+      <button class="nav-btn cart-toggle" id="cartBtn">
+        <i data-lucide="shopping-bag"></i>
+        <span>BAG</span>
+        <span class="cart-badge">0</span>
+      </button>
+    </nav>
+  </header>
 
-    <!-- Dynamic Background -->
-    <div class="site-bg"></div>
+  <!-- Vertical Social Sidebar -->
+  <aside class="social-sidebar">
+    <a href="https://www.tiktok.com/@shane02k" target="_blank">TIKTOK</a>
+    <a href="https://www.instagram.com/shaane02k/" target="_blank">INSTAGRAM</a>
+  </aside>
 
-    <!-- Header & Navigation -->
-    <header>
-        <div class="logo" onclick="location.href='index.html'">UNRENDERED2004</div>
-        <div class="nav-actions">
-            <button class="nav-icon" id="loginBtn" title="Account">👤</button>
-            <button class="nav-icon" id="cartBtn" title="Your Cart">
-                🛒<span class="cart-count">0</span>
-            </button>
-        </div>
-    </header>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>THE COLLECTION</h1>
+    <p>ALL PRODUCTS ARE MADE TO ORDER</p>
+  </section>
 
-    <!-- Social Sidebar (Vertical) -->
-    <aside class="social-sidebar">
-        <a href="https://www.tiktok.com/@shane02k" target="_blank">TIKTOK</a>
-        <a href="https://www.instagram.com/shaane02k/" target="_blank">INSTAGRAM</a>
-    </aside>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>THE COLLECTION</h1>
-        <p>ALL PRODUCTS ARE MADE TO ORDER</p>
-    </section>
-
-    <!-- Product Collection -->
-    <main>
-        <h2 class="section-title">Latest Archives</h2>
-        <div class="product-grid" id="productGrid">
-            <!-- Dynamic Products will be injected by script -->
-        </div>
-    </main>
-
-    <!-- Contact & Info Section -->
-    <section class="contact-section" id="contact">
-        <h2 class="section-title">Contact</h2>
-        <form class="contact-form">
-            <div class="input-group">
-                <input type="text" placeholder="NAME" required>
-            </div>
-            <div class="input-group">
-                <input type="email" placeholder="EMAIL" required>
-            </div>
-            <div class="input-group">
-                <textarea rows="5" placeholder="MESSAGE" required></textarea>
-            </div>
-            <button type="submit" class="btn-submit">Send Transmission</button>
-            <div class="footer-notices">
-                ALL SALES ARE FINAL<br>
-                NO BRAND AFFILIATION
-            </div>
-        </form>
-    </section>
-
-
-
-    <!-- CART SIDE PANEL -->
-    <div class="side-panel" id="cartPanel">
-        <div class="panel-close" id="closeCart">✕</div>
-        <h2>Your Bag</h2>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
-        <div id="cartItems" style="flex-grow: 1;">
-            <p style="color: #666; text-align: center; margin-top: 50px;">Your bag is currently empty.</p>
-        </div>
-        <div class="cart-footer">
-            <button class="btn-submit" style="width: 100%;">Checkout (Shopify Ready)</button>
-        </div>
+  <!-- Product Collection -->
+  <main>
+    <h2 class="section-title">Latest Archives</h2>
+    <div class="product-grid" id="productGrid">
+      <!-- Dynamic Products will be injected by script -->
     </div>
+  </main>
 
-    <!-- LOGIN MODAL -->
-    <div class="modal" id="loginModal">
-        <div class="side-panel active"
-            style="position: relative; right: 0; max-width: 500px; height: auto; border: 1px solid var(--glass-border); border-radius: 4px;">
-            <div class="panel-close" id="closeLogin">✕</div>
-            <h2 style="text-align: center; margin-bottom: 30px;">Access Archive</h2>
-            <form class="contact-form">
-                <div class="input-group">
-                    <input type="email" placeholder="EMAIL ADDRESS" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" placeholder="PASSWORD" required>
-                </div>
-                <button type="submit" class="btn-submit">Login</button>
-            </form>
-            <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
-                Don't have an account? <a href="#" style="color: white;">Join the Archive</a>
-            </p>
-        </div>
+
+  <!-- Contact & Info Section -->
+  <section class="contact-section" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <form class="contact-form">
+      <div class="input-group">
+        <input type="text" placeholder="FULL NAME" required>
+      </div>
+      <div class="input-group">
+        <input type="email" placeholder="EMAIL ADDRESS" required>
+      </div>
+      <div class="input-group">
+        <textarea rows="5" placeholder="MESSAGE" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Send Transmission</button>
+      <div class="footer-notices">
+        ALL SALES ARE FINAL<br>
+        NO BRAND AFFILIATION
+      </div>
+    </form>
+  </section>
+
+
+
+  <!-- CART SIDE PANEL -->
+  <div class="side-panel" id="cartPanel">
+    <div class="panel-close" id="closeCart">✕</div>
+    <h2>Your Bag</h2>
+    <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
+    <div id="cartItems" style="flex-grow: 1;">
+      <p style="color: #666; text-align: center; margin-top: 50px;">Your bag is currently empty.</p>
     </div>
+    <div class="cart-footer">
+      <button class="btn-submit" style="width: 100%;">Checkout (Shopify Ready)</button>
+    </div>
+  </div>
 
-    <script src="app.js"></script>
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="loginModal">
+    <div class="side-panel active"
+      style="position: relative; right: 0; max-width: 500px; height: auto; border: 1px solid var(--glass-border); border-radius: 4px;">
+      <div class="panel-close" id="closeLogin">✕</div>
+      <h2 style="text-align: center; margin-bottom: 30px;">Access Archive</h2>
+      <form class="contact-form">
+        <div class="input-group">
+          <input type="email" placeholder="EMAIL ADDRESS" required>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="PASSWORD" required>
+        </div>
+        <button type="submit" class="btn-submit">Login</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
+        Don't have an account? <a href="#" style="color: white;">Join the Archive</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 
 </html>

@@ -48,13 +48,16 @@ const closeCart = document.getElementById('closeCart');
 const loginModal = document.getElementById('loginModal');
 const loginBtn = document.getElementById('loginBtn');
 const closeLogin = document.getElementById('closeLogin');
-const cartCount = document.querySelector('.cart-count');
+const cartCount = document.querySelector('.cart-badge');
 const cartItems = document.getElementById('cartItems');
 
 // Initialize Website
 function init() {
     renderProducts();
     setupEventListeners();
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
 }
 
 // Render Product Cards
